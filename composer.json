@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony Datatable Bundle For Doctrine2 Entities",
     "keywords": ["symfony3", "datatable", "datatables", "data-table", "grid", "table", "datagrid", "pagination"],
-    "homepage": "https://github.com/stwe/DatatablesBundle",
+    "homepage": "https://github.com/ronisaha/DatatablesBundle",
     "license": "MIT",
     "authors": [
         {
@@ -16,11 +16,11 @@
         },
         {
             "name": "SgDatatablesBundle contributors",
-            "homepage": "https://github.com/stwe/DatatablesBundle/graphs/contributors"
+            "homepage": "https://github.com/ronisaha/DatatablesBundle/graphs/contributors"
         }
     ],
     "support": {
-        "issues": "https://github.com/stwe/DatatablesBundle/issues"
+        "issues": "https://github.com/ronisaha/DatatablesBundle/issues"
     },
     "require": {
         "php": ">=5.5.9",
