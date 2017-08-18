@@ -107,10 +107,12 @@ class DatatableFactory
      *
      * @param string $class
      *
+     * @param array  $options
+     *
      * @return DatatableInterface
      * @throws Exception
      */
-    public function create($class)
+    public function create($class, $options = array())
     {
         if (!is_string($class)) {
             $type = gettype($class);
@@ -121,8 +123,9 @@ class DatatableFactory
             throw new Exception("DatatableFactory::create(): $class does not exist");
         }
 
-        if (in_array(DatatableInterface::class, class_implements($class))) {
-            return new $class(
+        if ($this->isValidClass($class)) {
+            /** @var DatatableInterface $datatable */
+            $datatable = new $class(
                 $this->authorizationChecker,
                 $this->securityToken,
                 $this->translator,
@@ -130,8 +133,21 @@ class DatatableFactory
                 $this->em,
                 $this->twig
             );
+            $datatable->buildDataTable($options);
+            return $datatable;
         } else {
             throw new Exception("DatatableFactory::create(): The class $class should implement the DatatableInterface.");
         }
+    }
+
+    /**
+     * @param $class
+     *
+     * @return bool
+     */
+    public function isValidClass($class)
+    {
+        $interfaces = class_implements($class);
+        return isset($interfaces[DatatableInterface::class]);
     }
 }

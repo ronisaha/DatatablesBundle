@@ -11,6 +11,7 @@
 
 namespace Sg\DatatablesBundle\Response;
 
+use Doctrine\Common\Collections\Criteria;
 use Sg\DatatablesBundle\Datatable\Column\ColumnInterface;
 use Sg\DatatablesBundle\Datatable\Filter\FilterInterface;
 use Sg\DatatablesBundle\Datatable\DatatableInterface;
@@ -95,6 +96,13 @@ class DatatableQueryBuilder
      * @var QueryBuilder
      */
     private $qb;
+
+    /**
+     * The Base Criteria.
+     *
+     * @var Criteria
+     */
+    private $criteria;
 
     /**
      * The PropertyAccessor.
@@ -209,6 +217,7 @@ class DatatableQueryBuilder
         $this->rootEntityIdentifier = $this->getIdentifier($this->metadata);
 
         $this->qb = $this->em->createQueryBuilder()->from($this->entityName, $this->entityShortName);
+        $this->criteria = $datatable->getCriteria();
         $this->accessor = PropertyAccess::createPropertyAccessor();
 
         $this->columns = $datatable->getColumnBuilder()->getColumns();
@@ -353,6 +362,7 @@ class DatatableQueryBuilder
         $this->setSelectFrom($qb);
         $this->setJoins($qb);
         $this->setWhere($qb);
+        $this->addCriteria($this->qb);
         $this->setOrderBy($qb);
         $this->setLimit($qb);
 
@@ -552,7 +562,7 @@ class DatatableQueryBuilder
         $qb = clone $this->qb;
         $qb->select('count(distinct '.$this->entityShortName.'.'.$this->rootEntityIdentifier.')');
         $this->setJoins($qb);
-
+        $this->addCriteria($qb);
         $query = $qb->getQuery();
         $query->useQueryCache($this->useCountQueryCache);
         call_user_func_array([$query, 'useResultCache'], $this->useCountResultCacheArgs);
@@ -869,5 +879,12 @@ class DatatableQueryBuilder
         }
 
         return $this;
+    }
+
+    private function addCriteria(QueryBuilder $qb)
+    {
+        if($this->criteria !== null) {
+            $qb->addCriteria($this->criteria);
+        }
     }
 }

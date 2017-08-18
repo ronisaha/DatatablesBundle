@@ -11,6 +11,7 @@
 
 namespace Sg\DatatablesBundle\Datatable;
 
+use Doctrine\Common\Collections\Criteria;
 use Sg\DatatablesBundle\Datatable\Column\ColumnBuilder;
 
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -135,6 +136,13 @@ abstract class AbstractDatatable implements DatatableInterface
      */
     protected $accessor;
 
+    /**
+     * The Base Criteria.
+     *
+     * @var Criteria
+     */
+    private $criteria;
+
     //-------------------------------------------------
     // Ctor.
     //-------------------------------------------------
@@ -180,6 +188,7 @@ abstract class AbstractDatatable implements DatatableInterface
         $this->language = new Language();
 
         $this->accessor = PropertyAccess::createPropertyAccessor();
+        $this->criteria = Criteria::create();
     }
 
     //-------------------------------------------------
@@ -280,6 +289,11 @@ abstract class AbstractDatatable implements DatatableInterface
         }
 
         return $options;
+    }
+
+    public function getCriteria()
+    {
+        return $this->criteria;
     }
 
     //-------------------------------------------------
