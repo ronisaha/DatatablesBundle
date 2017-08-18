@@ -34,10 +34,20 @@ framework:
 
 ### Step 1: Download the Bundle
 
-Open a command console, enter your project directory and execute the following command to download the latest stable version of this bundle:
+Add following in your composer.json file and run `composer update ronisaha/datatablesbundle` 
 
-``` bash
-$ composer require sg/datatablesbundle
+``` json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ronisaha/datatablesbundle"
+        }
+    ],
+    "require": {
+        "ronisaha/datatablesbundle": "dev-production"
+    }
+}
 ```
 
 ### Step 2: Enable the Bundle
@@ -133,7 +143,7 @@ The easiest way is to load all files with your base layout with CDN.
 
 ### Step 1: Create a Datatable class
 
-The `sg:datatable:generate` [Console Command](https://github.com/stwe/DatatablesBundle/blob/master/Resources/doc/command.md) generates a Datatable for a given entity located in a given bundle.
+The `sg:datatable:generate` [Console Command](https://github.com/ronisaha/DatatablesBundle/blob/production/Resources/doc/command.md) generates a Datatable for a given entity located in a given bundle.
 
 **Example:**
 
@@ -393,12 +403,10 @@ public function indexAction(Request $request)
     // or use the DatatableFactory
     /** @var DatatableInterface $datatable */
     $datatable = $this->get('sg_datatables.factory')->create(PostDatatable::class);
-    $datatable->buildDatatable();
 
     if ($isAjax) {
         $responseService = $this->get('sg_datatables.response');
         $responseService->setDatatable($datatable);
-        $responseService->getDatatableQueryBuilder();
 
         return $responseService->getResponse();
     }
