@@ -1,6 +1,6 @@
 # SgDatatablesBundle
-This is a customize fork of 
-## A new version is available [stwe/DatatablesBundle](https://github.com/stwe/DatatablesBundle)
+This is a customize fork of [stwe/DatatablesBundle](https://github.com/stwe/DatatablesBundle)
+## A new version is available 
 
 **[The features](https://github.com/stwe/DatatablesBundle/blob/master/FEATURES.md)**
 
