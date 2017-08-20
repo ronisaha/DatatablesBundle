@@ -139,7 +139,7 @@ class DatatableResponse
         $outputHeader = array(
             'draw' => (int) $this->requestParams['draw'],
             'recordsFiltered' => $filteredTotal,
-            'recordsTotal' => true === $countAllResults ? (int) $this->datatableQueryBuilder->getCountAllResults() : $filteredTotal,
+            'recordsTotal' => true === $countAllResults ? (int) $this->datatableQueryBuilder->getCountAllResults($fetchJoinCollection) : $filteredTotal,
         );
 
         return new JsonResponse(array_merge($outputHeader, $formatter->getOutput()));
