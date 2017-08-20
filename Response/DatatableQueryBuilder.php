@@ -887,4 +887,16 @@ class DatatableQueryBuilder
             $qb->addCriteria($this->criteria);
         }
     }
+
+    /**
+     * @return Query
+     */
+    public function getQuery()
+    {
+        if (empty($this->qb->getDQLPart('select'))) {
+            $this->buildQuery();
+        }
+
+        return $this->qb->getQuery();
+    }
 }
