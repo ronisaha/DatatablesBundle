@@ -899,4 +899,9 @@ class DatatableQueryBuilder
 
         return $this->qb->getQuery();
     }
+
+    public function addOrderBy($sort, $order = null)
+    {
+        $this->qb->addOrderBy($sort, $order);
+    }
 }
