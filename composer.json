@@ -1,17 +1,22 @@
 {
-    "name": "sg/datatablesbundle",
+    "name": "ronisaha/datatablesbundle",
     "type": "symfony-bundle",
     "description": "Symfony Datatable Bundle For Doctrine2 Entities",
     "keywords": ["symfony3", "datatable", "datatables", "data-table", "grid", "table", "datagrid", "pagination"],
-    "homepage": "https://github.com/stwe/DatatablesBundle",
+    "homepage": "https://github.com/ronisaha/DatatablesBundle",
     "license": "MIT",
     "authors": [
         {
             "name": "stwe"
         },
         {
+            "name": "Roni Saha",
+            "email": "roni.cse@gmail.com",
+            "role": "Developer"
+        },
+        {
             "name": "SgDatatablesBundle contributors",
-            "homepage": "https://github.com/stwe/DatatablesBundle/graphs/contributors"
+            "homepage": "https://github.com/ronisaha/DatatablesBundle/graphs/contributors"
         }
     ],
     "support": {
@@ -23,9 +28,14 @@
         "doctrine/orm": "^2.5",
         "symfony/options-resolver": "^3.0",
         "symfony/property-access": "^3.0",
-        "friendsofsymfony/jsrouting-bundle": "^1.6"
+        "friendsofsymfony/jsrouting-bundle": "^1.6 !=1.6.1"
     },
     "autoload": {
         "psr-4": { "Sg\\DatatablesBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-prod": "2.x-dev"
+        }
     }
 }
