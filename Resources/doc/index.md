@@ -1,4 +1,4 @@
-[Installation](https://github.com/stwe/DatatablesBundle/blob/master/Resources/doc/installation.md)
+[Installation](https://github.com/ronisaha/DatatablesBundle/blob/master/Resources/doc/installation.md)
 
 [Console Command](https://github.com/stwe/DatatablesBundle/blob/master/Resources/doc/command.md)
 

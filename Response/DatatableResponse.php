@@ -129,11 +129,7 @@ class DatatableResponse
             throw new Exception('DatatableResponse::getResponse(): Set a Datatable class with setDatatable().');
         }
 
-        if (null === $this->datatableQueryBuilder) {
-            throw new Exception('DatatableResponse::getResponse(): A DatatableQueryBuilder instance is needed. Call getDatatableQueryBuilder().');
-        }
-
-        $paginator = new Paginator($this->datatableQueryBuilder->execute(), $fetchJoinCollection);
+        $paginator = new Paginator($this->getDatatableQueryBuilder()->execute(), $fetchJoinCollection);
         $paginator->setUseOutputWalkers($outputWalkers);
 
         $formatter = new DatatableFormatter();

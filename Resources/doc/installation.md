@@ -34,10 +34,20 @@ framework:
 
 ### Step 1: Download the Bundle
 
-Open a command console, enter your project directory and execute the following command to download the latest stable version of this bundle:
+Add following in your composer.json file and run `composer update ronisaha/datatablesbundle` 
 
-``` bash
-$ composer require sg/datatablesbundle
+``` json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ronisaha/datatablesbundle"
+        }
+    ],
+    "require": {
+        "ronisaha/datatablesbundle": "dev-prod"
+    }
+}
 ```
 
 ### Step 2: Enable the Bundle

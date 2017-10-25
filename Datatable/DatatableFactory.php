@@ -121,8 +121,8 @@ class DatatableFactory
             throw new Exception("DatatableFactory::create(): $class does not exist");
         }
 
-        if (in_array(DatatableInterface::class, class_implements($class))) {
-            return new $class(
+        if ($this->isValidClass($class)) {
+            return  new $class(
                 $this->authorizationChecker,
                 $this->securityToken,
                 $this->translator,
@@ -133,5 +133,16 @@ class DatatableFactory
         } else {
             throw new Exception("DatatableFactory::create(): The class $class should implement the DatatableInterface.");
         }
+    }
+
+    /**
+     * @param $class
+     *
+     * @return bool
+     */
+    public function isValidClass($class)
+    {
+        $interfaces = class_implements($class);
+        return isset($interfaces[DatatableInterface::class]);
     }
 }
